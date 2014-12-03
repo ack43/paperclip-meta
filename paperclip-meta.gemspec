@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "paperclip-meta/version"
 
 Gem::Specification.new do |s|
-  s.name          = "paperclip-meta"
+  s.name          = "glebtv-paperclip-meta"
   s.version       = Paperclip::Meta::VERSION
   s.authors       = ["Alexey Bondar", "Tee Parham"]
   s.email         = ["y8@ya.ru", "tee@neighborland.com"]
