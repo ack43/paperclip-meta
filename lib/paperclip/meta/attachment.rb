@@ -10,8 +10,10 @@ module Paperclip
 
       module InstanceMethods
         def save_with_meta_data
-          if @queued_for_delete.any? && @queued_for_write.empty?
+          if @queued_for_delete and @queued_for_delete.any? and (@queued_for_write.nil? or @queued_for_write.empty?)
             instance_write(:meta, meta_encode({}))
+          elsif !@queued_for_write.nil? and !@queued_for_write.empty?
+            post_process_styles_with_meta_data(@queued_for_write.keys.flatten)
           end
           save_without_meta_data
         end
@@ -20,7 +22,11 @@ module Paperclip
           post_process_styles_without_meta_data(*styles)
           return unless instance.respond_to?(:"#{name}_meta=")
 
-          meta = populate_meta(@queued_for_write)
+          process_meta_for_styles(@queued_for_write)
+        end
+
+        def process_meta_for_styles(queue)
+          meta = populate_meta(queue)
           return if meta == {}
 
           write_meta(meta)
@@ -42,7 +48,15 @@ module Paperclip
         # Return image dimesions ("WxH") for given style name. If style name not given,
         # return dimesions for default_style.
         def image_size(style = default_style)
-          "#{width(style)}x#{height(style)}"
+          w = width(style)
+          h = height(style)
+          "#{w}#{h && "x#{h}"}" if w || h
+        end
+
+        def meta_data
+          if instance.respond_to?(:"#{name}_meta") && instance_read(:meta)
+            meta_decode(instance_read(:meta)).freeze
+          end
         end
 
         private
@@ -52,6 +66,7 @@ module Paperclip
           queue.each do |style, file|
             begin
               geo = Geometry.from_file file
+              geo.auto_orient
               meta[style] = { width: geo.width.to_i, height: geo.height.to_i, size: file.size }
             rescue Paperclip::Errors::NotIdentifiedByImageMagickError
               meta[style] = {}

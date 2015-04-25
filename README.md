@@ -14,7 +14,7 @@ Paperclip Meta works with paperclip versions 3.x and 4.x.
 Add paperclip-meta to Gemfile:
 
 ```ruby
-gem 'paperclip-meta'
+gem 'ack-paperclip-meta'
 ```
 
 Create migration to add a *_meta column:

@@ -1,5 +1,7 @@
-.bundle
-.ruby-version
+.idea
+.idea/*
+
+.bundle/
 Gemfile.lock
 pkg/*
 spec/gemfiles/*.lock

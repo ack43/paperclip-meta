@@ -1,4 +1,4 @@
-Copyright (c) 2014 Tee Parham, Alexey Bondar
+Copyright (c) 2015 ack
 
 MIT License
 

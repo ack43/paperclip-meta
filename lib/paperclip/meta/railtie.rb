@@ -1,4 +1,4 @@
-require 'paperclip-meta'
+require 'paperclip/meta'
 
 module Paperclip
   module Meta
@@ -12,6 +12,11 @@ module Paperclip
           ActiveSupport.on_load :mongoid do
             Paperclip::Meta::Railtie.insert
           end
+        end
+
+        rake_tasks do
+          dir = File.join(File.dirname(__FILE__),'../../../tasks/*.rake')
+          Dir[dir].each { |f| load f }
         end
       end
     end

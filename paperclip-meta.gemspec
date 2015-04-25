@@ -1,13 +1,13 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "paperclip-meta/version"
+require "paperclip/meta/version"
 
 Gem::Specification.new do |s|
-  s.name          = "glebtv-paperclip-meta"
+  s.name          = "ack-paperclip-meta"
   s.version       = Paperclip::Meta::VERSION
-  s.authors       = ["Alexey Bondar", "Tee Parham"]
-  s.email         = ["y8@ya.ru", "tee@neighborland.com"]
-  s.homepage      = "http://github.com/teeparham/paperclip-meta"
+  s.authors       = ["ack", "Alexey Bondar", "Tee Parham"]
+  s.email         = ["i43ack@gmail.com", "y8@ya.ru", "tee@neighborland.com"]
+  s.homepage      = "http://github.com/ack43/paperclip-meta"
   s.summary       = %q{Add width, height, and size to paperclip images}
   s.description   = %q{Add width, height and size methods to paperclip images}
   s.license       = "MIT"
@@ -24,9 +24,9 @@ Gem::Specification.new do |s|
   s.add_development_dependency "bundler", "~> 1.5"
   s.add_development_dependency "rake", "~> 10.1"
   s.add_development_dependency "mocha", "~> 1.0"
-  s.add_development_dependency "activerecord", ">= 4.0"
+  # s.add_development_dependency "activerecord", ">= 4.0"
 
   # sqlite3 1.3.9 does not work with rubinius 2.2.5:
   # https://github.com/sparklemotion/sqlite3-ruby/issues/122
-  s.add_development_dependency "sqlite3", "1.3.8"
+  # s.add_development_dependency "sqlite3", "1.3.8"
 end
