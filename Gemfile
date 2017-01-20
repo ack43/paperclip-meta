@@ -1,10 +1,4 @@
-source 'https://rubygems.org'
-
-platforms :jruby do
-  gem 'activerecord-jdbcsqlite3-adapter'
-end
+source "https://rubygems.org"
 
 # See paperclip-meta.gemspec
 gemspec
-
-gem 'paperclip'

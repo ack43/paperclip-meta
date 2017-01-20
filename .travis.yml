@@ -1,10 +1,7 @@
+language: ruby
+cache: bundler
+sudo: false
 rvm:
-  - 2.1.4
-  - 2.0.0
-  - 1.9.3
-  - rbx-2
-gemfile:
-  - spec/gemfiles/Gemfile.paperclip-4
-  - spec/gemfiles/Gemfile.paperclip-3
-install:
-  - bundle install --retry=3
+  - 2.4.0
+  - 2.3.3
+  - 2.2.6
