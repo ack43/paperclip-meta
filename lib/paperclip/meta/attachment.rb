@@ -3,7 +3,7 @@ module Paperclip
     module Attachment
       def assign_attributes
         super
-        assign_meta
+        assign_meta if content_type =~ /\Aimage\/.*\Z/
       end
 
       def save
@@ -44,6 +44,7 @@ module Paperclip
       private
 
       def assign_meta
+        return unless content_type =~ /\Aimage\/.*\Z/
         return unless instance.respond_to?(:"#{name}_meta=")
         meta = populate_meta(@queued_for_write)
         return if meta == {}
@@ -85,6 +86,7 @@ module Paperclip
 
       # Return decoded metadata as Object
       def meta_decode(meta)
+        return meta if meta.is_a?(Hash)
         Marshal.load(Base64.decode64(meta))
       end
 
